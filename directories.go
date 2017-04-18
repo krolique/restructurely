@@ -32,7 +32,7 @@ func tokenize_directory(dir_name string) ([]string, error) {
 }
 
 // performs pre scan operations on the directory, by laying out the initial
-func directory_scan(file_path string) (err error) {
+func directory_scan(file_path string) error {
 
 	directories, err := ioutil.ReadDir(file_path)
 

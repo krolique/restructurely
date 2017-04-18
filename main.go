@@ -15,6 +15,18 @@ func rename(oldpath string, newpath string, peform_rename bool) {
 }
 
 func main() {
-	path := "D:\\music\\Dishwalla"
-	directory_scan(path)
+
+	scan_dir_path := ""
+
+	if len(os.Args) < 2 {
+		fmt.Println("Missing scan directory path as the first command line argument")
+		os.Exit(1)
+	}
+
+	err := directory_scan(scan_dir_path)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
