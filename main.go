@@ -23,10 +23,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	album_dirs, err := scan(scan_dir_path)
+	directories, err := scan(scan_dir_path)
 
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
+	}
+
+	for item := range directories {
+		fmt.Println(item)
 	}
 }
