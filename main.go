@@ -23,7 +23,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	err := directory_scan(scan_dir_path)
+	album_dirs, err := scan(scan_dir_path)
 
 	if err != nil {
 		fmt.Println(err)

@@ -16,7 +16,7 @@ func tokenize_directory(dir_name string) ([]string, error) {
 		switch r {
 		// potential to refine the "case" to include multiple case as
 		// case '<', '>', ':'
-		case '<':
+		case '-':
 			return true
 		}
 		return false
@@ -31,14 +31,17 @@ func tokenize_directory(dir_name string) ([]string, error) {
 	return tokens, nil
 }
 
-// performs pre scan operations on the directory, by laying out the initial
-func directory_scan(file_path string) error {
+// Scans the folder defined by the `file_path` variable and returns a list
+// of possible album directories
+func scan(file_path string) ([]AlbumDirectory, error) {
 
 	directories, err := ioutil.ReadDir(file_path)
 
 	if err != nil {
-		return err
+		return nil, err
 	}
+
+	var album_dirs []AlbumDirectory
 
 	for _, directory := range directories {
 
@@ -49,9 +52,13 @@ func directory_scan(file_path string) error {
 			}
 		}
 
-		full_path := filepath.Join(file_path, directory.Name())
-		fmt.Println(full_path)
+		var new_dir AlbumDirectory
+		new_dir.root = file_path
+		new_dir.name = directory.Name()
+		new_dir.tokens = tokens
+		new_dir.full_path = filepath.Join(file_path, directory.Name())
+		album_dirs = append(album_dirs, new_dir)
 	}
 
-	return nil
+	return album_dirs, nil
 }
