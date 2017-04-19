@@ -16,12 +16,12 @@ func rename(oldpath string, newpath string, peform_rename bool) {
 
 func main() {
 
-	scan_dir_path := ""
-
 	if len(os.Args) < 2 {
 		fmt.Println("Missing scan directory path as the first command line argument")
 		os.Exit(1)
 	}
+
+	scan_dir_path := os.Args[1]
 
 	directories, err := scan(scan_dir_path)
 
@@ -30,7 +30,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	for item := range directories {
-		fmt.Println(item)
+	for _, item := range directories {
+		fmt.Println(item.Display())
 	}
 }

@@ -21,7 +21,7 @@ type AlbumDirectory struct {
 }
 
 func (a *AlbumDirectory) Display() string {
-	return fmt.Sprintf("<AlbumDirectory name[%s] root[%s]", a.root, a.name)
+	return fmt.Sprintf("<AlbumDirectory name[%s]>", a.name)
 }
 
 // An Album grouping
