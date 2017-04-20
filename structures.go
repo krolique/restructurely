@@ -18,6 +18,8 @@ type AlbumDirectory struct {
 	tokens []string
 	// absolute path to the album directory
 	full_path string
+	// suggested name to rename the directory to
+	suggested_name string
 }
 
 func (a *AlbumDirectory) Display() string {
